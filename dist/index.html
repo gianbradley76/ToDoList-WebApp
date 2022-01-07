@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito&family=Sen&display=swap"
+			rel="stylesheet"
+		/>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>To-Do App</title>
+	</head>
+
+	<body>
+		<div class="container">
+			<!-- Sidebar Start -->
+			<div class="sidebar-container">
+				<div class="tasks-buttons-container">
+					<h2 class="sidebar-title">To-Do List</h2>
+					<ul class="task-link-container">
+						<li class="task-link active" id="taskTodayLink">Tasks Today</li>
+						<li class="task-link" id="taskWeekLink">This Week</li>
+						<li class="task-link" id="taskAllLink">All Tasks</li>
+					</ul>
+				</div>
+				<div class="projects-container">
+					<h2 class="sidebar-title">Projects</h2>
+					<ul>
+						<li class="project-link">Project 1</li>
+						<li class="project-link">Project 2</li>
+						<li class="project-link add-project" id="addProject">
+							<img src="/dist/media/add.svg" alt="" srcset="" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- Sidebar End -->
+			<!-- Main Content Start -->
+			<div class="main-content">
+				<div class="project-headers">
+					<h1 class="main-title" id="mainTitle"></h1>
+					<p class="task-duration"></p>
+					<h3 class="proj-description" id="projDescription">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
+						consequatur!
+					</h3>
+				</div>
+				<div class="tasks-container">
+					<!-- Unfinished Tasks Start -->
+					<div class="unfinished-tasks-container">
+						<div class="task-item" id="addTask">
+							<p>Add Task</p>
+						</div>
+					</div>
+					<!-- Unfinished Tasks End -->
+					<!-- Finished Tasks Start -->
+					<div class="finished-tasks-container"></div>
+					<!-- Finished Tasks End -->
+				</div>
+				<!-- Modal Start -->
+				<div class="modal-bg">
+					<div class="modal">
+						<form id="taskForm">
+							<div class="form-group">
+								<label for="task-title">Task :</label>
+								<input type="text" name="task-title" id="taskTitle" />
+								<label for="task-due">Due Date :</label>
+								<input type="date" name="task-due" id="taskDue" />
+								<label for="proj-group">Project :</label>
+								<input type="text" name="proj-group" id="projGroup" />
+								<input type="submit" class="submit-task" value="Add Task" />
+							</div>
+						</form>
+						<span class="modal-close">X</span>
+					</div>
+				</div>
+				<!-- Modal End -->
+			</div>
+			<!-- Main Content End -->
+		</div>
+		<script src="main.js"></script>
+	</body>
+</html>

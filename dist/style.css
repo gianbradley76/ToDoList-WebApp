@@ -1,0 +1,316 @@
+:root {
+	--task-title-font: "Sen", sans-serif;
+	--sidebar-links: "Nunito", sans-serif;
+	--blue-green: rgb(4, 101, 130);
+	--yellow: rgb(252, 236, 221);
+	--dark-yellow: rgb(223, 182, 145);
+	--peach: rgb(243, 145, 137);
+	--red: rgb(248, 140, 140);
+	--green: rgb(137, 226, 110);
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0%;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+}
+
+body {
+	height: 100vh;
+	background-color: var(--yellow);
+}
+
+.container {
+	height: inherit;
+}
+
+.sidebar-container {
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: fixed;
+	min-width: 15vw;
+	overflow: hidden;
+	background-color: var(--blue-green);
+}
+
+.tasks-buttons-container,
+.projects-container {
+	margin-top: 30px;
+}
+
+.sidebar-title {
+	font-family: var(--task-title-font);
+	color: var(--peach);
+	padding-bottom: 20px;
+	font-size: 2.5em;
+}
+
+.task-link,
+.project-link {
+	font-weight: bold;
+	font-size: 1.2em;
+	font-family: var(--sidebar-links);
+	text-align: center;
+	list-style: none;
+	padding: 10px 20px;
+	margin: 5px 15px;
+	color: var(--peach);
+	cursor: pointer;
+}
+
+.task-link:hover,
+.project-link:hover {
+	background-color: var(--peach);
+	border-radius: 50px;
+	color: var(--blue-green);
+}
+
+.add-project {
+	padding: 8px 0;
+	border-radius: 50px;
+	border: 2px solid var(--peach);
+	cursor: pointer;
+	border-color: rgba(243, 145, 137, 0.5);
+}
+
+.add-project > img {
+	height: 1em;
+}
+
+.add-project:hover {
+	background-color: var(--blue-green);
+	border-color: var(--peach);
+}
+
+.active {
+	background-color: var(--peach);
+	border-radius: 50px;
+	color: var(--blue-green);
+}
+
+.main-content {
+	margin-left: 15vw;
+	padding: 30px;
+	height: auto;
+}
+
+.main-title,
+.task-duration,
+.proj-description {
+	font-family: var(--task-title-font);
+	color: var(--blue-green);
+}
+
+.main-title {
+	font-weight: bold;
+	font-size: 2.5em;
+}
+.task-duration {
+	margin-bottom: 3px;
+	font-size: 1.5em;
+}
+
+.proj-description {
+	font-size: 1em;
+}
+
+.tasks-container {
+	display: flex;
+	justify-content: space-around;
+	padding: 25px;
+	margin-top: 1.5em;
+}
+
+.unfinished-tasks-container,
+.finished-tasks-container {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+}
+
+.task-item {
+	display: flex;
+	justify-content: space-between;
+	margin: 6px 0;
+	padding: 10px;
+	font-size: 22px;
+	color: var(--blue-green);
+	font-family: var(--task-title-font);
+	border: 3px solid var(--dark-yellow);
+	border-radius: 10px;
+	/* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); */
+}
+
+.task-item > p {
+	margin: 0 15px;
+	width: 82%;
+}
+
+.due-date {
+	color: black;
+	font-size: 0.7em;
+	color: var(--red);
+	align-self: center;
+	max-width: 12%;
+}
+
+.delete-task,
+.toggle-finished,
+.toggle-unfinished {
+	cursor: pointer;
+	align-self: center;
+	height: 25px;
+	min-width: 25px;
+	border: 1px solid black;
+}
+
+.toggle-unfinished {
+	background-color: var(--green);
+	border-radius: 50%;
+	background-image: url(/dist/media/check.svg);
+	background-position: 50% 50%;
+	background-size: 12px;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.toggle-finished {
+	background-color: var(--red);
+	border-radius: 50%;
+	background-image: url(/dist/media/close.svg);
+	background-position: 50% 50%;
+	background-size: 12px;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+.delete-task {
+	background-color: var(--yellow);
+	border-radius: 50%;
+	background-image: url(/dist/media/delete.svg);
+	background-position: 50% 50%;
+	background-size: 15px;
+	background-repeat: no-repeat;
+	border: none;
+}
+
+#addTask > p {
+	text-align: center;
+	width: 100%;
+	cursor: pointer;
+}
+
+/* Task Input Modal */
+
+/* Modal */
+.modal-bg {
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s ease-in-out, opacity 0s ease-in-out;
+}
+
+.bg-active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal {
+	position: relative;
+	width: 35vw;
+	padding: 30px 0;
+	background-color: var(--blue-green);
+	border: 2px solid var(--dark-yellow);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.modal-close,
+.status-modal-close {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	color: #b38b6d;
+}
+
+#taskForm {
+	width: 80%;
+}
+
+/* Modal Form Layout */
+.form-group {
+	display: grid;
+	grid-template-columns: 35% 65%;
+	align-content: flex-start;
+}
+
+.form-group > * {
+	margin: 10px 0;
+}
+
+.form-group > label {
+	font-family: var(--task-title-font);
+	font-size: 1.5em;
+	color: var(--peach);
+}
+
+.form-group > input[type="text"] {
+	padding: 5px 10px;
+	background-color: var(--yellow);
+	border: none;
+	border-radius: 5px;
+	font-family: var(--task-title-font);
+	border-bottom: 3px solid rgba(0, 0, 0, 0);
+	font-size: 1.2em;
+	color: var(--blue-green);
+	box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.form-group > input[type="text"]:focus {
+	border-bottom: 3px solid var(--red);
+}
+
+.form-group > input[type="date"] {
+	padding: 5px 10px;
+	background-color: var(--yellow);
+	border: none;
+	border-radius: 5px;
+	font-family: var(--task-title-font);
+	font-size: 1.2em;
+	color: var(--blue-green);
+	box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.submit-task {
+	grid-column: 1 / span 2;
+	padding: 10px 10px;
+	background-color: var(--dark-yellow);
+	border: none;
+	border-radius: 5px;
+	font-family: var(--task-title-font);
+	font-size: 1.2em;
+	color: var(--blue-green);
+	cursor: pointer;
+	box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.25);
+}
